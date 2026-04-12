@@ -1,0 +1,8 @@
+[project]
+name = "medcontrol"
+version = "1.0.0"
+dependencies = ["pytest"]
+
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
