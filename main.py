@@ -1,22 +1,35 @@
+import sys
+from pathlib import Path
+
+# Configura o caminho do projeto
+ROOT = Path(__file__).parent
+sys.path.insert(0, str(ROOT))
+
 import customtkinter as ctk
 from src.ui.perfil import PerfilWindow
-from src.ui.main_app import MainApp
+
 
 class App(ctk.CTk):
     def __init__(self):
         super().__init__()
+
         self.title("MedControl")
-        self.geometry("450x600")
-        self.mostrar_perfil()
+        self.geometry("800x700")
 
-    def mostrar_perfil(self):
-        self.view = PerfilWindow(self, self.mostrar_lista)
-        self.view.pack(fill="both", expand=True)
+        # Tema visual
+        ctk.set_appearance_mode("System")
+        ctk.set_default_color_theme("blue")
 
-    def mostrar_lista(self):
-        self.view.destroy() 
-        self.view = MainApp(self)
-        self.view.pack(fill="both", expand=True)
+        # Tela de perfil
+        self.perfil = PerfilWindow(
+            self,
+            callback_continuar=self.continuar
+        )
+        self.perfil.pack(fill="both", expand=True)
+
+    def continuar(self):
+        print("Continuando para próxima tela...")
+
 
 if __name__ == "__main__":
     app = App()
